@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://iw6lry61opgi"]
 
 [ext_resource type="Texture2D" uid="uid://3udk0sxm85ow" path="res://assets/spritesheet.png" id="1_7k104"]
-[ext_resource type="Script" uid="uid://2vmccyytxk7s" path="res://enemy.gd" id="1_md0e3"]
+[ext_resource type="Script" uid="uid://2vmccyytxk7s" path="res://scripts/enemy.gd" id="1_md0e3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4gyqm"]
 atlas = ExtResource("1_7k104")
@@ -35,7 +35,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_epg4t")
 }],
 "loop": true,
-"name": &"default",
+"name": &"new_animation",
 "speed": 5.0
 }]
 

@@ -1,11 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://crx7ss3v3rg2n"]
+[gd_scene load_steps=6 format=3 uid="uid://crx7ss3v3rg2n"]
 
 [ext_resource type="Script" uid="uid://ui4k4v3lgvwf" path="res://scripts/game.gd" id="1_uwrxv"]
 [ext_resource type="PackedScene" uid="uid://b2axk4v2o8175" path="res://scenes/player.tscn" id="2_yqjtg"]
 [ext_resource type="PackedScene" uid="uid://iw6lry61opgi" path="res://scenes/enemy.tscn" id="3_lnu2h"]
+[ext_resource type="PackedScene" uid="uid://buewyty6m1ify" path="res://scenes/enemy2.tscn" id="4_lbhrr"]
+
+[sub_resource type="GDScript" id="GDScript_yqjtg"]
+script/source = "extends Node2D
+"
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_uwrxv")
+enemy_scenes = Array[PackedScene]([ExtResource("3_lnu2h"), ExtResource("4_lbhrr")])
 
 [node name="Player" parent="." instance=ExtResource("2_yqjtg")]
 position = Vector2(110, 326)
@@ -15,5 +21,10 @@ position = Vector2(110, 324)
 
 [node name="BulletContainer" type="Node" parent="."]
 
-[node name="Enemy" parent="." instance=ExtResource("3_lnu2h")]
-position = Vector2(1009, 324)
+[node name="EnemyContainer" type="Node2D" parent="."]
+script = SubResource("GDScript_yqjtg")
+
+[node name="EnemySpawnTimer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="EnemySpawnTimer" to="." method="_on_enemy_spawn_timer_timeout"]
