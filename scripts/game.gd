@@ -13,6 +13,10 @@ var score := 0:
 	set(value):
 		score = value
 		hud.score = score
+var health := 5:
+	set(value):
+		health = value
+		hud.health = health
 
 func _ready():
 	score = 0
@@ -20,6 +24,7 @@ func _ready():
 	assert(player!=null)
 	player.global_position = player_spawn_pos.global_position
 	player.bullet_shot.connect(_on_player_bullet_shot)
+	
 
 func _process(delta):
 	if Input.is_action_just_pressed("quit"):
@@ -36,6 +41,12 @@ func _process(delta):
 		if !e.enemy_bullet_shot.is_connected(_on_player_bullet_shot):
 			if e.enemy_type == 1:
 				e.enemy_bullet_shot.connect(_on_player_bullet_shot)
+	
+	if player != null:
+		health = player.hp
+	else:
+		health = 0
+		
 	
 
 func _on_player_bullet_shot(bullet_scene, location):
