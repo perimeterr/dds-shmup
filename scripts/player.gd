@@ -5,7 +5,7 @@ signal bullet_shot(bullet_scene, location)
 @export var speed = 300
 @export var rate_of_fire := 0.25
 
-@onready var muzzle = $Muzzle
+@onready var muzzle  = $Muzzle
 
 var bullet_scene = preload("res://scenes/bullet.tscn")
 
