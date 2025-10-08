@@ -48,15 +48,10 @@ func take_damage(amount):
 		tween.tween_property(animated_sprite, "scale", Vector2(2,2), 0.1)
 		await tween.finished
 		die()
-		
-func collide():
-	if not collided:
-		collided = true
-		
+	else:
 		var old_color = modulate
 		modulate = Color(1,0,0,0.5)
 		var tween = create_tween()
 		tween.tween_property(self, "modulate", old_color, 0.4)
 		await tween.finished
 		
-		collided = false

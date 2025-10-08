@@ -48,9 +48,7 @@ func take_damage(amount):
 func _on_attack_speed_timeout() -> void:
 	enemy_bullet_shot.emit(enemy_bullet_scene, bullet_spawn.global_position)
 
-
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body is Player:
-		body.collide()
 		body.take_damage(1)
 		take_damage(1) 
