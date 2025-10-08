@@ -22,6 +22,10 @@ func _process(delta):
 func _physics_process(delta):
 	var direction = Vector2(Input.get_axis("left",
 	 "right"), Input.get_axis("up","down"))
+	
+	if direction != Vector2.ZERO: #added this so diagonal movement does not speed up the player
+		direction = direction.normalized()
+		
 	velocity = direction * speed
 	move_and_slide()
 
