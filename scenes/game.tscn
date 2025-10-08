@@ -1,10 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://crx7ss3v3rg2n"]
+[gd_scene load_steps=9 format=3 uid="uid://crx7ss3v3rg2n"]
 
 [ext_resource type="Script" uid="uid://ui4k4v3lgvwf" path="res://scripts/game.gd" id="1_uwrxv"]
 [ext_resource type="PackedScene" uid="uid://b2axk4v2o8175" path="res://scenes/player.tscn" id="2_yqjtg"]
 [ext_resource type="PackedScene" uid="uid://iw6lry61opgi" path="res://scenes/enemy.tscn" id="3_lnu2h"]
 [ext_resource type="PackedScene" uid="uid://dijcho370ytv3" path="res://scenes/hud.tscn" id="4_iywne"]
 [ext_resource type="PackedScene" uid="uid://buewyty6m1ify" path="res://scenes/enemy2.tscn" id="4_lbhrr"]
+[ext_resource type="Texture2D" uid="uid://dwhtaxcedoufj" path="res://assets/layer_0.png" id="5_p57ef"]
+[ext_resource type="Script" uid="uid://bhts1uqdcnarb" path="res://scenes/scrolling_background.gd" id="5_u5sy4"]
 
 [sub_resource type="GDScript" id="GDScript_yqjtg"]
 script/source = "extends Node2D
@@ -17,6 +19,18 @@ enemy_scenes = Array[PackedScene]([ExtResource("3_lnu2h"), ExtResource("4_lbhrr"
 [node name="UILayer" type="CanvasLayer" parent="."]
 
 [node name="HUD" parent="UILayer" instance=ExtResource("4_iywne")]
+
+[node name="ScrollingBackground" type="Sprite2D" parent="."]
+position = Vector2(594, 352)
+scale = Vector2(3.49412, 3.13636)
+script = ExtResource("5_u5sy4")
+
+[node name="Background1" type="Sprite2D" parent="ScrollingBackground"]
+texture = ExtResource("5_p57ef")
+
+[node name="Background2" type="Sprite2D" parent="ScrollingBackground"]
+position = Vector2(340, 0)
+texture = ExtResource("5_p57ef")
 
 [node name="Player" parent="." instance=ExtResource("2_yqjtg")]
 position = Vector2(110, 326)
