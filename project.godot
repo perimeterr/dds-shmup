@@ -66,6 +66,10 @@ shoot={
 2d_physics/layer_1="player"
 2d_physics/layer_2="enemy"
 2d_physics/layer_3="bullet"
+2d_physics/dpi/allow_hidpi=true
+2d_physics/size/viewport_width=640
+2d_physics/size/mode=0
+2d_physics/size/viewport_height=320
 
 [rendering]
 

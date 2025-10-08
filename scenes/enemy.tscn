@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://iw6lry61opgi"]
 
 [ext_resource type="Texture2D" uid="uid://3udk0sxm85ow" path="res://assets/spritesheet.png" id="1_7k104"]
-[ext_resource type="Script" uid="uid://2vmccyytxk7s" path="res://enemy.gd" id="1_md0e3"]
+[ext_resource type="Script" uid="uid://2vmccyytxk7s" path="res://scripts/enemy.gd" id="1_md0e3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4gyqm"]
 atlas = ExtResource("1_7k104")
@@ -35,7 +35,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_epg4t")
 }],
 "loop": true,
-"name": &"default",
+"name": &"new_animation",
 "speed": 5.0
 }]
 
@@ -44,6 +44,8 @@ scale = Vector2(4, 4)
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_md0e3")
+speed = 250
+hp = 2
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_3yqyl")
@@ -59,3 +61,4 @@ position = Vector2(15.25, -0.25)
 scale = Vector2(0.3125, 0.2125)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
