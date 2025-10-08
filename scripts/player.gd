@@ -4,6 +4,7 @@ signal bullet_shot(bullet_scene, location)
 
 @export var speed = 300
 @export var rate_of_fire := 0.25
+@export var hp = 5
 
 @onready var muzzle  = $Muzzle
 
@@ -28,8 +29,16 @@ func _physics_process(delta):
 		
 	velocity = direction * speed
 	move_and_slide()
+	
+	global_position = global_position.clamp(Vector2.ZERO, Vector2(900,648))
 
 func shoot():
 	bullet_shot.emit(bullet_scene, muzzle.global_position)
+	
 func die():
 	queue_free()
+	
+func take_damage(amount):
+	hp -= amount
+	if hp <= 0:
+		die()

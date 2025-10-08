@@ -42,9 +42,11 @@ animations = [{
 [node name="Enemy" instance=ExtResource("1_wc7mj")]
 speed = 500
 hp = 1
+points = 200
 
 [node name="AnimatedSprite2D" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_lsk8u")
+animation = &"default"
 frame = 0
 frame_progress = 0.0
 
