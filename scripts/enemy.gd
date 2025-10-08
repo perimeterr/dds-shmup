@@ -1,13 +1,32 @@
 class_name Enemy extends Area2D
 
 signal killed(points)
+signal enemy_bullet_shot(bullet_scene, location)
 
-@export var speed = 150
+@export var speed = 60
+@export var wave_amplitude = 50
+@export var wave_frequency = 2.0
 @export var hp = 1
 @export var points = 100
+@export var enemy_type = 1
+
+@onready var bullet_spawn  = $BulletSpawn
+@onready var animated_sprite = $AnimatedSprite2D
+
+var enemy_bullet_scene = preload("res://scenes/enemy_bullet.tscn")
+var time: float
+var center_y: float
+
+func _ready():
+	center_y = position.y
 
 func _physics_process(delta):
-	global_position.x += -speed * delta
+	if enemy_type == 1:
+		time += delta * wave_frequency
+		position.x -= delta * speed
+		position.y = center_y + sin(time)*wave_amplitude
+	else:
+		position.x -= delta * speed
 
 func die():
 	queue_free()
@@ -23,5 +42,12 @@ func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 func take_damage(amount):
 	hp -= amount
 	if hp <= 0:
+		animated_sprite.animation = "explosion"
+		var tween = create_tween()
+		tween.tween_property(animated_sprite, "scale", Vector2(1,1), 0.1)
+		await tween.finished
 		killed.emit(points)
 		die()
+
+func _on_attack_speed_timeout() -> void:
+	enemy_bullet_shot.emit(enemy_bullet_scene, bullet_spawn.global_position)
