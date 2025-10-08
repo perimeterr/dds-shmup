@@ -1,4 +1,4 @@
-extends CharacterBody2D
+class_name Player extends CharacterBody2D
 
 signal bullet_shot(bullet_scene, location)
 
@@ -27,3 +27,5 @@ func _physics_process(delta):
 
 func shoot():
 	bullet_shot.emit(bullet_scene, muzzle.global_position)
+func die():
+	queue_free()

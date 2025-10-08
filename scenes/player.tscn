@@ -41,6 +41,7 @@ animations = [{
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 scale = Vector2(4, 4)
+collision_mask = 2
 motion_mode = 1
 script = ExtResource("1_g2els")
 
@@ -48,7 +49,8 @@ script = ExtResource("1_g2els")
 sprite_frames = SubResource("SpriteFrames_fjrip")
 animation = &"idle"
 autoplay = "idle"
-frame_progress = 0.00749682
+frame = 1
+frame_progress = 0.823003
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(-7.75, 5, 6, 5, 8, 3, 8, 0.25, 1.25, -4, -3, -4, -3, -6, -5, -8, -7, -8, -8, -7, -8, 4.75)
