@@ -21,11 +21,17 @@ func _ready():
 	player.global_position = player_spawn_pos.global_position
 	player.bullet_shot.connect(_on_player_bullet_shot)
 
-func _process(_delta):
+func _process(delta):
 	if Input.is_action_just_pressed("quit"):
 		get_tree().quit()
 	elif Input.is_action_just_pressed("reset"):
 		get_tree().reload_current_scene()
+		
+	if timer.wait_time > 0.4:
+		timer.wait_time -= delta*0.005
+	elif timer.wait_time < 0.4:
+		timer.wait_time = 0.4
+	
 
 func _on_player_bullet_shot(bullet_scene, location):
 	var bullet = bullet_scene.instantiate()
