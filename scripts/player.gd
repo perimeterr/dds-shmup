@@ -7,6 +7,7 @@ signal bullet_shot(bullet_scene, location)
 @export var hp = 5
 
 @onready var bullet_spawn  = $BulletSpawn
+@onready var animated_sprite = $AnimatedSprite2D
 
 var bullet_scene = preload("res://scenes/bullet.tscn")
 
@@ -41,5 +42,8 @@ func die():
 func take_damage(amount):
 	hp -= amount
 	if hp <= 0:
+		animated_sprite.animation = "explosion"
+		var tween = create_tween()
+		tween.tween_property(animated_sprite, "scale", Vector2(2,2), 0.1)
+		await tween.finished
 		die()
-	print(hp)

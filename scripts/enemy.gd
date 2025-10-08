@@ -11,6 +11,7 @@ signal enemy_bullet_shot(bullet_scene, location)
 @export var enemy_type = 1
 
 @onready var bullet_spawn  = $BulletSpawn
+@onready var animated_sprite = $AnimatedSprite2D
 
 var enemy_bullet_scene = preload("res://scenes/enemy_bullet.tscn")
 var time: float
@@ -41,6 +42,10 @@ func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 func take_damage(amount):
 	hp -= amount
 	if hp <= 0:
+		animated_sprite.animation = "explosion"
+		var tween = create_tween()
+		tween.tween_property(animated_sprite, "scale", Vector2(1,1), 0.1)
+		await tween.finished
 		killed.emit(points)
 		die()
 
