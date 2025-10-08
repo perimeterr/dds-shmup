@@ -22,12 +22,9 @@ func _ready():
 	center_y = position.y
 
 func _physics_process(delta):
-	if enemy_type == 1:
-		time += delta * wave_frequency
-		position.x -= delta * speed
-		position.y = center_y + sin(time)*wave_amplitude
-	else:
-		position.x -= delta * speed
+	time += delta * wave_frequency
+	position.x -= delta * speed
+	position.y = center_y + sin(time)*wave_amplitude
 
 func die():
 	queue_free()

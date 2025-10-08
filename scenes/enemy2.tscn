@@ -73,7 +73,9 @@ animations = [{
 }]
 
 [node name="Enemy2" instance=ExtResource("1_wc7mj")]
-speed = 600
+speed = 700
+wave_amplitude = 80
+wave_frequency = 3.0
 hp = 1
 points = 200
 enemy_type = 2

@@ -4,9 +4,11 @@ extends Node2D
 
 @onready var player_spawn_pos = $PlayerSpawnPos
 @onready var bullet_container = $BulletContainer
-@onready var timer = $EnemySpawnTimer
+@onready var enemy_spawn_timer = $EnemySpawnTimer
 @onready var enemy_container = $EnemyContainer
 @onready var hud = $UILayer/HUD
+
+var special_enemy_scene = preload("res://scenes/enemy3.tscn")
 
 var player = null
 var score := 0:
@@ -32,10 +34,10 @@ func _process(delta):
 	elif Input.is_action_just_pressed("reset"):
 		get_tree().reload_current_scene()
 		
-	if timer.wait_time > 0.4:
-		timer.wait_time -= delta*0.005
-	elif timer.wait_time < 0.4:
-		timer.wait_time = 0.4
+	if enemy_spawn_timer.wait_time > 0.4:
+		enemy_spawn_timer.wait_time -= delta*0.005
+	elif enemy_spawn_timer.wait_time < 0.4:
+		enemy_spawn_timer.wait_time = 0.4
 		
 	for e in enemy_container.get_children():
 		if !e.enemy_bullet_shot.is_connected(_on_player_bullet_shot):
@@ -63,3 +65,10 @@ func _on_enemy_spawn_timer_timeout() -> void:
 func _on_enemy_killed(points):
 	score += points
 	print(score)
+
+func _on_special_enemy_timer_timeout() -> void:
+	var e = special_enemy_scene.instantiate()
+	e.global_position = Vector2(randf_range(1158,1258),324)
+	e.killed.connect(_on_enemy_killed)
+	enemy_container.add_child(e)
+	
