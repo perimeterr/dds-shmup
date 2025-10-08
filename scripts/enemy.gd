@@ -3,7 +3,9 @@ class_name Enemy extends Area2D
 signal killed(points)
 signal enemy_bullet_shot(bullet_scene, location)
 
-@export var speed = 150
+@export var speed = 60
+@export var wave_amplitude = 50
+@export var wave_frequency = 2.0
 @export var hp = 1
 @export var points = 100
 @export var enemy_type = 1
@@ -11,9 +13,19 @@ signal enemy_bullet_shot(bullet_scene, location)
 @onready var bullet_spawn  = $BulletSpawn
 
 var enemy_bullet_scene = preload("res://scenes/enemy_bullet.tscn")
+var time: float
+var center_y: float
+
+func _ready():
+	center_y = position.y
 
 func _physics_process(delta):
-	global_position.x += -speed * delta
+	if enemy_type == 1:
+		time += delta * wave_frequency
+		position.x -= delta * speed
+		position.y = center_y + sin(time)*wave_amplitude
+	else:
+		position.x -= delta * speed
 
 func die():
 	queue_free()

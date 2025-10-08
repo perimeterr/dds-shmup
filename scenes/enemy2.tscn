@@ -40,7 +40,7 @@ animations = [{
 }]
 
 [node name="Enemy" instance=ExtResource("1_wc7mj")]
-speed = 500
+speed = 600
 hp = 1
 points = 200
 enemy_type = 2

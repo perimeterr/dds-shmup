@@ -42,3 +42,4 @@ func take_damage(amount):
 	hp -= amount
 	if hp <= 0:
 		die()
+	print(hp)
