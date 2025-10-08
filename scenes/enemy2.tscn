@@ -72,7 +72,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Enemy" instance=ExtResource("1_wc7mj")]
+[node name="Enemy2" instance=ExtResource("1_wc7mj")]
 speed = 600
 hp = 1
 points = 200
@@ -80,6 +80,7 @@ enemy_type = 2
 
 [node name="AnimatedSprite2D" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_lsk8u")
+animation = &"default"
 autoplay = "default"
 
 [node name="CollisionPolygon2D" parent="." index="1"]
@@ -87,3 +88,6 @@ polygon = PackedVector2Array(3.25, -5.75, 8, -2, 7.75, 5, 6.5, 7.5, -3.5, 7.75, 
 
 [node name="VisibleOnScreenNotifier2D" parent="." index="2"]
 position = Vector2(15.25, 1)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D" index="0"]
+polygon = PackedVector2Array(3.25, -5.75, 8, -2, 7.75, 5, 6.5, 7.5, -3.5, 7.75, -7.5, 2.25, -7.75, -0.75, -3.5, -5.5)

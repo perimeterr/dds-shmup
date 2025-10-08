@@ -72,7 +72,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Enemy2" type="Area2D"]
+[node name="Enemy" type="CharacterBody2D"]
 scale = Vector2(4, 4)
 collision_layer = 2
 collision_mask = 5
@@ -82,11 +82,11 @@ hp = 2
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_3yqyl")
-animation = &"explosion"
+animation = &"idle"
 autoplay = "idle"
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(7.5, -7.25, 8, -2, 7.75, 5, 6.25, 6.25, -4.75, 6.25, -7.75, 1.5, -7.75, -0.75, 5.25, -7.75)
+polygon = PackedVector2Array(8, -4.5, 8, -2, 7.75, 6.25, 6.25, 7.75, -4.5, 7.5, -7.5, 3.75, -7.75, 1.75, 5.25, -5.5)
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 position = Vector2(15.25, -0.25)
@@ -99,6 +99,11 @@ position = Vector2(-10.25, 0.25)
 wait_time = 0.8
 autostart = true
 
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+polygon = PackedVector2Array(8, -4.5, 8, -2, 7.75, 6.25, 6.25, 7.75, -4.5, 7.5, -7.5, 3.75, -7.75, 1.75, 5.25, -5.5)
+
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
 [connection signal="timeout" from="AttackSpeedTimer" to="." method="_on_attack_speed_timeout"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

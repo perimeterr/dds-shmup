@@ -1,4 +1,4 @@
-class_name Enemy extends Area2D
+class_name Enemy extends CharacterBody2D
 
 signal killed(points)
 signal enemy_bullet_shot(bullet_scene, location)
@@ -12,6 +12,7 @@ signal enemy_bullet_shot(bullet_scene, location)
 
 @onready var bullet_spawn  = $BulletSpawn
 @onready var animated_sprite = $AnimatedSprite2D
+@onready var area2d = $Area2D
 
 var enemy_bullet_scene = preload("res://scenes/enemy_bullet.tscn")
 var time: float
@@ -31,11 +32,6 @@ func _physics_process(delta):
 func die():
 	queue_free()
 
-func _on_body_entered(body: Node2D) -> void:
-	if body is Player:
-		body.take_damage(1)
-		take_damage(1) 
-
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	queue_free()
 
@@ -51,3 +47,10 @@ func take_damage(amount):
 
 func _on_attack_speed_timeout() -> void:
 	enemy_bullet_shot.emit(enemy_bullet_scene, bullet_spawn.global_position)
+
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	if body is Player:
+		body.collide()
+		body.take_damage(1)
+		take_damage(1) 
