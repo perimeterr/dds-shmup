@@ -50,5 +50,6 @@ func _on_attack_speed_timeout() -> void:
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body is Player:
+		body.collide()
 		body.take_damage(1)
 		take_damage(1) 
