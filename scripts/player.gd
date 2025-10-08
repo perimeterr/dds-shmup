@@ -6,7 +6,7 @@ signal bullet_shot(bullet_scene, location)
 @export var rate_of_fire := 0.25
 @export var hp = 5
 
-@onready var muzzle  = $Muzzle
+@onready var bullet_spawn  = $BulletSpawn
 
 var bullet_scene = preload("res://scenes/bullet.tscn")
 
@@ -33,7 +33,7 @@ func _physics_process(delta):
 	global_position = global_position.clamp(Vector2.ZERO, Vector2(900,648))
 
 func shoot():
-	bullet_shot.emit(bullet_scene, muzzle.global_position)
+	bullet_shot.emit(bullet_scene, bullet_spawn.global_position)
 	
 func die():
 	queue_free()

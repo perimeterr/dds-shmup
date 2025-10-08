@@ -31,6 +31,10 @@ func _process(delta):
 		timer.wait_time -= delta*0.005
 	elif timer.wait_time < 0.4:
 		timer.wait_time = 0.4
+		
+	for e in enemy_container.get_children():
+		if e.enemy_type == 1:
+			e.enemy_bullet_shot.connect(_on_player_bullet_shot)
 	
 
 func _on_player_bullet_shot(bullet_scene, location):

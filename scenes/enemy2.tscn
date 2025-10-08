@@ -43,6 +43,7 @@ animations = [{
 speed = 500
 hp = 1
 points = 200
+enemy_type = 2
 
 [node name="AnimatedSprite2D" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_lsk8u")
