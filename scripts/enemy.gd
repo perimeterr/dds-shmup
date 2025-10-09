@@ -9,18 +9,24 @@ signal enemy_bullet_shot(bullet_scene, location)
 @export var hp = 1
 @export var points = 100
 @export var enemy_type = 1
+@export var attack_speed = 1
 
 @onready var bullet_spawn  = $BulletSpawn
 @onready var animated_sprite = $AnimatedSprite2D
 @onready var area2d = $Area2D
+@onready var laser = $Laser
+@onready var attack_speed_timer = $AttackSpeedTimer
 
 var enemy_bullet_scene = preload("res://scenes/enemy_bullet.tscn")
 var time: float
 var center_y: float
+var is_colliding_with_player = false
 
 func _ready():
 	center_y = position.y
-
+	attack_speed_timer.wait_time = attack_speed
+	laser.is_casting = false
+	
 func _physics_process(delta):
 	time += delta * wave_frequency
 	position.x -= delta * speed
@@ -43,10 +49,18 @@ func take_damage(amount):
 		die()
 
 func _on_attack_speed_timeout() -> void:
-	enemy_bullet_shot.emit(enemy_bullet_scene, bullet_spawn.global_position)
+	if enemy_type == 3:
+		laser_attack()
+	else:
+		enemy_bullet_shot.emit(enemy_bullet_scene, bullet_spawn.global_position)
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body is Player:
 		body.collide()
 		body.take_damage(1)
 		take_damage(1) 
+		
+func laser_attack():
+	laser.is_casting = true
+	await get_tree().create_timer(3).timeout
+	laser.is_casting = false

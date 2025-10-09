@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dijcho370ytv3" path="res://scenes/hud.tscn" id="4_iywne"]
 [ext_resource type="PackedScene" uid="uid://buewyty6m1ify" path="res://scenes/enemy2.tscn" id="4_lbhrr"]
 [ext_resource type="Texture2D" uid="uid://dwhtaxcedoufj" path="res://assets/layer_0.png" id="5_p57ef"]
-[ext_resource type="Script" uid="uid://bhts1uqdcnarb" path="res://scenes/scrolling_background.gd" id="5_u5sy4"]
+[ext_resource type="Script" uid="uid://bhts1uqdcnarb" path="res://scripts/scrolling_background.gd" id="5_u5sy4"]
 
 [sub_resource type="GDScript" id="GDScript_yqjtg"]
 script/source = "extends Node2D
@@ -47,7 +47,7 @@ script = SubResource("GDScript_yqjtg")
 autostart = true
 
 [node name="SpecialEnemyTimer" type="Timer" parent="."]
-wait_time = 15.0
+wait_time = 5.0
 autostart = true
 
 [connection signal="timeout" from="EnemySpawnTimer" to="." method="_on_enemy_spawn_timer_timeout"]

@@ -41,10 +41,10 @@ animations = [{
 
 [node name="Enemy3" instance=ExtResource("1_jwwc6")]
 speed = 30
-wave_amplitude = 200
-wave_frequency = 1.0
+wave_amplitude = 150
 hp = 15
-points = 300
+enemy_type = 3
+attack_speed = 5
 
 [node name="AnimatedSprite2D" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_b0uxi")
@@ -56,3 +56,9 @@ polygon = PackedVector2Array(11, -4.75, 13, 4.5, 7.25, 13, -3.25, 14.75, -11, 8.
 
 [node name="CollisionPolygon2D" parent="Area2D" index="0"]
 polygon = PackedVector2Array(5.75, -9.75, 11.25, -4.5, 13, 4.5, 7.75, 13.25, -3.25, 15, -11, 8.5, -12, -1.25, -6, -9.5)
+
+[node name="Laser" parent="." index="6"]
+target_position = Vector2(-14516.7, 0)
+cast_speed = 7000
+max_length = 600
+start_distance = 20

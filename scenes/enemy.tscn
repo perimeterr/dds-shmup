@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://iw6lry61opgi"]
+[gd_scene load_steps=13 format=3 uid="uid://iw6lry61opgi"]
 
 [ext_resource type="Texture2D" uid="uid://3udk0sxm85ow" path="res://assets/spritesheet.png" id="1_7k104"]
 [ext_resource type="Script" uid="uid://2vmccyytxk7s" path="res://scripts/enemy.gd" id="1_md0e3"]
+[ext_resource type="PackedScene" uid="uid://b2lm6bpbvct0v" path="res://scenes/laser.tscn" id="3_4ra3w"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_md0e3"]
 atlas = ExtResource("1_7k104")
@@ -78,7 +79,6 @@ collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_md0e3")
 speed = 250
-hp = 2
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_3yqyl")
@@ -103,6 +103,10 @@ autostart = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
 polygon = PackedVector2Array(8, -4.5, 8, -2, 7.75, 6.25, 6.25, 7.75, -4.5, 7.5, -7.5, 3.75, -7.75, 1.75, 5.25, -5.5)
+
+[node name="Laser" parent="." instance=ExtResource("3_4ra3w")]
+cast_speed = 7000.0
+start_distance = 40.0
 
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
 [connection signal="timeout" from="AttackSpeedTimer" to="." method="_on_attack_speed_timeout"]
