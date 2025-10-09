@@ -25,7 +25,8 @@ var is_colliding_with_player = false
 func _ready():
 	center_y = position.y
 	attack_speed_timer.wait_time = attack_speed
-	laser.is_casting = false
+	if enemy_type != 3:
+		laser.queue_free()
 	
 func _physics_process(delta):
 	time += delta * wave_frequency
@@ -62,5 +63,5 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		
 func laser_attack():
 	laser.is_casting = true
-	await get_tree().create_timer(3).timeout
+	await get_tree().create_timer(2).timeout
 	laser.is_casting = false

@@ -47,7 +47,7 @@ script = SubResource("GDScript_yqjtg")
 autostart = true
 
 [node name="SpecialEnemyTimer" type="Timer" parent="."]
-wait_time = 5.0
+wait_time = 20.0
 autostart = true
 
 [connection signal="timeout" from="EnemySpawnTimer" to="." method="_on_enemy_spawn_timer_timeout"]

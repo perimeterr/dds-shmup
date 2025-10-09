@@ -105,8 +105,10 @@ autostart = true
 polygon = PackedVector2Array(8, -4.5, 8, -2, 7.75, 6.25, 6.25, 7.75, -4.5, 7.5, -7.5, 3.75, -7.75, 1.75, 5.25, -5.5)
 
 [node name="Laser" parent="." instance=ExtResource("3_4ra3w")]
-cast_speed = 7000.0
-start_distance = 40.0
+target_position = Vector2(-51216.8, 0)
+cast_speed = 7000
+color = Color(1, 1, 1, 1)
+start_distance = 40
 
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
 [connection signal="timeout" from="AttackSpeedTimer" to="." method="_on_attack_speed_timeout"]

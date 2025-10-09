@@ -43,6 +43,7 @@ animations = [{
 speed = 30
 wave_amplitude = 150
 hp = 15
+points = 400
 enemy_type = 3
 attack_speed = 5
 
@@ -59,6 +60,4 @@ polygon = PackedVector2Array(5.75, -9.75, 11.25, -4.5, 13, 4.5, 7.75, 13.25, -3.
 
 [node name="Laser" parent="." index="6"]
 target_position = Vector2(-14516.7, 0)
-cast_speed = 7000
-max_length = 600
 start_distance = 20

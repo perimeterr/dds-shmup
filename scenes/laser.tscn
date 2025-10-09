@@ -4,14 +4,15 @@
 
 [node name="Laser" type="RayCast2D"]
 enabled = false
-target_position = Vector2(-2706.66, 0)
+target_position = Vector2(0, 0)
 script = ExtResource("1_xmihv")
 color = Color(0.491223, 0.96293, 7.70092e-07, 1)
-start_distance = null
 
 [node name="Line2D" type="Line2D" parent="."]
+visible = false
 modulate = Color(0.491223, 0.96293, 7.70092e-07, 1)
-points = PackedVector2Array(0, 0, -2706.66, 0)
+self_modulate = Color(0.490196, 0.964706, 0, 1)
+points = PackedVector2Array(-20, 0, -6710.09, 0)
 begin_cap_mode = 2
 end_cap_mode = 2
 

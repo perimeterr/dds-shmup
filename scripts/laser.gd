@@ -1,4 +1,3 @@
-@tool
 extends RayCast2D
 
 @export var cast_speed := 200
@@ -30,6 +29,9 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	if Engine.is_editor_hint():
+		return
+	
 	target_position.x = move_toward(
 		target_position.x,
 		max_length,
