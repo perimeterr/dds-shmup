@@ -1,0 +1,63 @@
+[gd_scene load_steps=8 format=3 uid="uid://cx0vct3m2kef8"]
+
+[ext_resource type="PackedScene" uid="uid://iw6lry61opgi" path="res://scenes/enemy.tscn" id="1_jwwc6"]
+[ext_resource type="Texture2D" uid="uid://3udk0sxm85ow" path="res://assets/spritesheet.png" id="2_qupug"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o2iik"]
+atlas = ExtResource("2_qupug")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kroph"]
+atlas = ExtResource("2_qupug")
+region = Rect2(32, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xx6g3"]
+atlas = ExtResource("2_qupug")
+region = Rect2(64, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2wk5q"]
+atlas = ExtResource("2_qupug")
+region = Rect2(96, 96, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_b0uxi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o2iik")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kroph")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xx6g3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2wk5q")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Enemy3" instance=ExtResource("1_jwwc6")]
+speed = 30
+wave_amplitude = 150
+hp = 15
+points = 400
+enemy_type = 3
+attack_speed = 5
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_b0uxi")
+animation = &"default"
+autoplay = ""
+
+[node name="CollisionPolygon2D" parent="." index="1"]
+polygon = PackedVector2Array(11, -4.75, 13, 4.5, 7.25, 13, -3.25, 14.75, -11, 8.5, -12.25, -1.25, -6, -9.5, 5.75, -10)
+
+[node name="CollisionPolygon2D" parent="Area2D" index="0"]
+polygon = PackedVector2Array(5.75, -9.75, 11.25, -4.5, 13, 4.5, 7.75, 13.25, -3.25, 15, -11, 8.5, -12, -1.25, -6, -9.5)
+
+[node name="Laser" parent="." index="6"]
+target_position = Vector2(-14516.7, 0)
+start_distance = 20

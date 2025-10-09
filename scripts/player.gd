@@ -12,6 +12,7 @@ signal bullet_shot(bullet_scene, location)
 var bullet_scene = preload("res://scenes/bullet.tscn")
 
 var shoot_cd := false
+var collided := false
 
 func _process(delta):
 	if Input.is_action_pressed("shoot"):
@@ -31,7 +32,7 @@ func _physics_process(delta):
 	velocity = direction * speed
 	move_and_slide()
 	
-	global_position = global_position.clamp(Vector2.ZERO, Vector2(900,648))
+	global_position = global_position.clamp(Vector2.ZERO, Vector2(800,648))
 
 func shoot():
 	bullet_shot.emit(bullet_scene, bullet_spawn.global_position)
@@ -47,3 +48,15 @@ func take_damage(amount):
 		tween.tween_property(animated_sprite, "scale", Vector2(2,2), 0.1)
 		await tween.finished
 		die()
+		
+func collide():
+	if not collided:
+		collided = true
+		var old_color = modulate
+		modulate = Color(1,0,0,0.5)
+		var tween = create_tween()
+		tween.tween_property(self, "modulate", old_color, 0.4)
+		await tween.finished
+		
+		collided = false
+		

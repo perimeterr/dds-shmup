@@ -72,14 +72,16 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Enemy" instance=ExtResource("1_wc7mj")]
-speed = 600
-hp = 1
+[node name="Enemy2" instance=ExtResource("1_wc7mj")]
+speed = 700
+wave_amplitude = 60
+wave_frequency = 3.0
 points = 200
 enemy_type = 2
 
 [node name="AnimatedSprite2D" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_lsk8u")
+animation = &"default"
 autoplay = "default"
 
 [node name="CollisionPolygon2D" parent="." index="1"]
@@ -87,3 +89,10 @@ polygon = PackedVector2Array(3.25, -5.75, 8, -2, 7.75, 5, 6.5, 7.5, -3.5, 7.75, 
 
 [node name="VisibleOnScreenNotifier2D" parent="." index="2"]
 position = Vector2(15.25, 1)
+
+[node name="CollisionPolygon2D" parent="Area2D" index="0"]
+polygon = PackedVector2Array(3.5, -5.5, 8, -2, 7.75, 5.5, 6.25, 7.75, -3.75, 7.5, -7, 3, -7.5, -1, -3.5, -5.25)
+
+[node name="Laser" parent="." index="6"]
+target_position = Vector2(-1.59541e+06, 0)
+start_distance = 20

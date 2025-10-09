@@ -13,6 +13,7 @@ func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 
 func _on_body_entered(body: CharacterBody2D) -> void:
 	if body is Player:
+		body.collide()
 		body.take_damage(damage)
 		animated_sprite.animation = "explosion"
 		var tween = create_tween()

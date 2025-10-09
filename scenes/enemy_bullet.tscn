@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dges0b1wlpufn"]
+[gd_scene load_steps=8 format=3 uid="uid://dxvw8vsa5vy5x"]
 
 [ext_resource type="Texture2D" uid="uid://3udk0sxm85ow" path="res://assets/spritesheet.png" id="1_d2qol"]
 [ext_resource type="Script" uid="uid://c3i8nlnbxa56q" path="res://scripts/enemy_bullet.gd" id="1_qx7rs"]
@@ -41,13 +41,13 @@ animations = [{
 size = Vector2(5, 4)
 
 [node name="EnemyBullet" type="Area2D"]
+scale = Vector2(2, 2)
 collision_layer = 4
 script = ExtResource("1_qx7rs")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 rotation = 3.14159
 sprite_frames = SubResource("SpriteFrames_d2qol")
-animation = &"explosion"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, 0)

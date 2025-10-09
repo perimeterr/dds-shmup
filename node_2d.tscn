@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://dno74k4m7d056"]
+
+[sub_resource type="GDScript" id="GDScript_y32ns"]
+script/source = "extends Node2D
+
+func _ready():
+	var laser_scene = preload(\"res://scenes/Laser.tscn\")
+	var laser = laser_scene.instantiate()
+	add_child(laser)
+"
+
+[node name="Node2D" type="Node2D"]
+script = SubResource("GDScript_y32ns")

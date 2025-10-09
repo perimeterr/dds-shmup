@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://b2lm6bpbvct0v"]
+
+[ext_resource type="Script" uid="uid://bxsa8t11a5b2p" path="res://scripts/laser.gd" id="1_xmihv"]
+
+[node name="Laser" type="RayCast2D"]
+enabled = false
+target_position = Vector2(0, 0)
+script = ExtResource("1_xmihv")
+color = Color(0.491223, 0.96293, 7.70092e-07, 1)
+
+[node name="Line2D" type="Line2D" parent="."]
+visible = false
+modulate = Color(0.491223, 0.96293, 7.70092e-07, 1)
+self_modulate = Color(0.490196, 0.964706, 0, 1)
+points = PackedVector2Array(-20, 0, -6710.09, 0)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="DamageCooldownTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="DamageCooldownTimer" to="." method="_on_damage_cooldown_timer_timeout"]
