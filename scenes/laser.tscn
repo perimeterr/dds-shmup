@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://b2lm6bpbvct0v"]
+[gd_scene load_steps=2 format=3 uid="uid://bycvxyt7p52ub"]
 
-[ext_resource type="Script" uid="uid://bxsa8t11a5b2p" path="res://scripts/laser.gd" id="1_xmihv"]
+[ext_resource type="Script" path="res://scripts/laser.gd" id="1_xmihv"]
 
 [node name="Laser" type="RayCast2D"]
 enabled = false

@@ -13,6 +13,8 @@ var bullet_scene = preload("res://scenes/bullet.tscn")
 
 var shoot_cd := false
 var collided := false
+var mini := false
+var default_scale = self.scale
 
 func _process(delta):
 	if Input.is_action_pressed("shoot"):
@@ -33,9 +35,17 @@ func _physics_process(delta):
 	move_and_slide()
 	
 	global_position = global_position.clamp(Vector2.ZERO, Vector2(800,648))
+	
+	resize()
+	
+	if Input.is_action_pressed("mini"):
+		mini = true
+	else:
+		mini = false
 
 func shoot():
-	bullet_shot.emit(bullet_scene, bullet_spawn.global_position)
+	if not mini:
+		bullet_shot.emit(bullet_scene, bullet_spawn.global_position)
 	
 func die():
 	queue_free()
@@ -59,4 +69,16 @@ func collide():
 		await tween.finished
 		
 		collided = false
+		
+func resize():
+	if not mini:
+		var tween = create_tween()
+		tween.tween_property(self, "scale", default_scale, 0.1)
+		self.speed = 300
+		mini = false
+	elif mini:
+		var tween = create_tween()
+		tween.tween_property(self, "scale", Vector2(2,2), 0.1)
+		self.speed = 400
+		mini = true
 		

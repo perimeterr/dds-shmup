@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cx0vct3m2kef8"]
+[gd_scene load_steps=8 format=3 uid="uid://h820jsalqwta"]
 
 [ext_resource type="PackedScene" uid="uid://iw6lry61opgi" path="res://scenes/enemy.tscn" id="1_jwwc6"]
 [ext_resource type="Texture2D" uid="uid://3udk0sxm85ow" path="res://assets/spritesheet.png" id="2_qupug"]
